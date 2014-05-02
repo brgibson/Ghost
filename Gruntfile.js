@@ -452,7 +452,7 @@ var path           = require('path'),
                             'bower_components/handlebars/handlebars.runtime.js',
                             'bower_components/moment/moment.js',
                             'bower_components/jquery-file-upload/js/jquery.fileupload.js',
-                            'bower_components/codemirror/lib/codemirror.js', //this is interesting... where is this code?
+                            'bower_components/codemirror/lib/codemirror.js',
                             'bower_components/codemirror/addon/mode/overlay.js',
                             'bower_components/codemirror/mode/markdown/markdown.js',
                             'bower_components/codemirror/mode/gfm/gfm.js',

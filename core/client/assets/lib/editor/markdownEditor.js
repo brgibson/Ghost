@@ -7,7 +7,7 @@
     'use strict';
 
     var MarkdownShortcuts,
-        MarkdownEditor; //this file might be interesting also
+        MarkdownEditor;
 
     MarkdownShortcuts = [
         {'key': 'Ctrl+Alt+U', 'style': 'strike'},
@@ -44,7 +44,7 @@
     }
 
     MarkdownEditor = function () {
-        var codemirror = CodeMirror.fromTextArea(document.getElementById('entry-markdown'), { //interesting - probably could hide code mirror in this class
+        var codemirror = CodeMirror.fromTextArea(document.getElementById('entry-markdown'), {
             mode:           'gfm',
             tabMode:        'indent',
             tabindex:       '2',
