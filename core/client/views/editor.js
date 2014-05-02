@@ -36,15 +36,27 @@
         render: function () { return this; }
     });
 
-
+    
     // The entire /editor page's route
     // ----------------------------------------
+    var EditorModes = {
+            'markdownMode' : { 
+                'attrToRemove'  : 'style',
+                'classToAdd'    : 'markdown-editor-mode',
+                'classToRemove' : 'rawtext-editor-mode'
+            }
+            ,'rawtextMode' : {
+                'attrToRemove'  : 'stlye',
+                'classToAdd'    : 'rawtext-editor-mode',
+                'classToRemove' : 'markdown-editor-mode'
+            }
+        };
     Ghost.Views.Editor = Ghost.View.extend({
 
         events: {
             'click .markdown-help': 'showHelp',
-            'click markdown-editor-mode': setMarkdownEditorMode("markdown"),
-            'click rawtext-editor-mode' : setMarkdownEditorMode("raw"),
+            'click markdown-editor-mode': changeEditorMode(EditorModes.markdownMode),
+            'click rawtext-editor-mode' : changeEditorMode(EditorModes.rawtextMode),
             'blur #entry-title': 'trimTitle',
             'orientationchange': 'orientationChange'
         },
@@ -90,6 +102,13 @@
             });
         },
 
+        changeEditorMode: function (markdownMode) {
+            var entryMarkdown = $('entry-markdown');
+            entryMarkdown.removeAttr(markdownMode.attrToRemove);
+            entryMarkdown.addClass(markdownMode.classToAdd);
+            entryMarkdown.removeClass(markdownMode.classToRemove);
+        },
+        
         trimTitle: function () {
             var rawTitle = this.$title.val(),
                 trimmedTitle = $.trim(rawTitle);
@@ -125,7 +144,7 @@
                 setTimeout(function () { s.display = 'block'; focusedElement.focus(); }, 0);
             }
         },
-
+        
         showEditorModal: function (content) {
             this.addSubview(new Ghost.Views.Modal({
                 model: {
@@ -147,25 +166,6 @@
             this.showEditorModal(content);
         },
         
-        setMarkdownEditorMode: function (markdownMode) {
-            var attrToRemove; //todo - remove this
-            var classToAdd;
-            var attrToRemove; //todo - remove this
-            var classToRemove;
-            
-            var entryMarkdown = $('entry-markdown');
-            
-            if (markdownMode == 'markdown') {
-                attrToRemove = 'style';
-                classToAdd = 'markdown-editor-mode';
-                classToRemove = 'rawtext-editor-mode'
-            }
-            
-            
-            
-            
-        },
-
         showHTML: function () {
             var content = {
                 template: 'copyToHTML',
