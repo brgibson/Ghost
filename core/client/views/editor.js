@@ -43,6 +43,8 @@
 
         events: {
             'click .markdown-help': 'showHelp',
+            'click markdown-editor-mode': setMarkdownEditorMode("markdown"),
+            'click rawtext-editor-mode' : setMarkdownEditorMode("raw"),
             'blur #entry-title': 'trimTitle',
             'orientationchange': 'orientationChange'
         },
@@ -69,7 +71,7 @@
             this.bindShortcuts();
 
             $('.entry-markdown header, .entry-preview header').on('click', function (e) {
-                $('.entry-markdown, .entry-preview').removeClass('active');
+                $('.entry-markdown, .entry-preview').removeClass('active'); //interesting
                 $(e.currentTarget).closest('section').addClass('active');
             });
         },
@@ -143,6 +145,25 @@
                 title: 'Markdown Help'
             };
             this.showEditorModal(content);
+        },
+        
+        setMarkdownEditorMode: function (markdownMode) {
+            var attrToRemove; //todo - remove this
+            var classToAdd;
+            var attrToRemove; //todo - remove this
+            var classToRemove;
+            
+            var entryMarkdown = $('entry-markdown');
+            
+            if (markdownMode == 'markdown') {
+                attrToRemove = 'style';
+                classToAdd = 'markdown-editor-mode';
+                classToRemove = 'rawtext-editor-mode'
+            }
+            
+            
+            
+            
         },
 
         showHTML: function () {

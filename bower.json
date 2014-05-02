@@ -2,7 +2,7 @@
     "name": "ghost",
     "dependencies": {
         "backbone": "1.0.0",
-        "codemirror": "4.0.1",
+        "codemirror": "4.0.1", // you might have to write a patch for codemirror?
         "Countable": "2.0.2",
         "fastclick": "1.0.0",
         "ghost-ui": "0.1.3",
